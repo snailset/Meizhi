@@ -25,10 +25,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.bumptech.glide.Glide;
-import java.util.List;
 import me.drakeet.meizhi.R;
 import me.drakeet.meizhi.data.entity.Meizhi;
 import me.drakeet.meizhi.func.OnMeizhiTouchListener;
@@ -62,6 +65,8 @@ public class MeizhiListAdapter
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
+        // 为每一个position绑定一个ViewHolder
+        // 页面拖动时自动更新(即使绑定过，也需要重新绑定，利于内存释放)
         Meizhi meizhi = mList.get(position);
         int limit = 48;
         String text = meizhi.desc.length() > limit ? meizhi.desc.substring(0, limit) +
@@ -70,10 +75,10 @@ public class MeizhiListAdapter
         viewHolder.titleView.setText(text);
         viewHolder.card.setTag(meizhi.desc);
 
-        Glide.with(mContext)
-             .load(meizhi.url)
-             .centerCrop()
-             .into(viewHolder.meizhiView)
+        Glide.with(mContext)   // Clide 是一个图片加载框架
+             .load(meizhi.url) // 图片的URL，当然也可以是一个文件地址
+             .centerCrop()     // 转换的样式
+             .into(viewHolder.meizhiView)  // 加载到指定的view
              .getSize((width, height) -> {
                  if (!viewHolder.card.isShown()) {
                      viewHolder.card.setVisibility(View.VISIBLE);

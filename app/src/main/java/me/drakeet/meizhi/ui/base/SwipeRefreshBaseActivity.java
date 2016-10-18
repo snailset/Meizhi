@@ -43,7 +43,7 @@ public abstract class SwipeRefreshBaseActivity extends ToolbarActivity
         ButterKnife.bind(this);
     }
 
-
+    //这个方法在onCreate()之后调用
     @Override protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         trySetupSwipeRefresh();
@@ -55,6 +55,7 @@ public abstract class SwipeRefreshBaseActivity extends ToolbarActivity
             mSwipeRefreshLayout.setColorSchemeResources(R.color.refresh_progress_3,
                     R.color.refresh_progress_2, R.color.refresh_progress_1);
             // Do not use lambda here!
+            // 下拉 刷新事件
             mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override public void onRefresh() {
                     requestDataRefresh();
@@ -63,12 +64,12 @@ public abstract class SwipeRefreshBaseActivity extends ToolbarActivity
         }
     }
 
-
+    // 下拉事件会调用，所以要在子类中重写改方法
     @Override public void requestDataRefresh() {
         mIsRequestDataRefresh = true;
     }
 
-
+    // 显示进度条
     public void setRefresh(boolean requestDataRefresh) {
         if (mSwipeRefreshLayout == null) {
             return;
@@ -79,6 +80,7 @@ public abstract class SwipeRefreshBaseActivity extends ToolbarActivity
             mSwipeRefreshLayout.postDelayed(new Runnable() {
                 @Override public void run() {
                     if (mSwipeRefreshLayout != null) {
+                        // 通知刷新，参数为是否显示进度条
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }

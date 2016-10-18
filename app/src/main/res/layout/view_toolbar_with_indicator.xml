@@ -23,6 +23,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--
+        android:layout_alignBottom="@id/app_bar_layout" 表示TabLayout底部与AppBar底部对齐
+        android:layout_marginBottom="-2.5dp" 表示TabLayout底部距离AppBar底部-2.5dp(说明超出2.5dp)
+    -->
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"

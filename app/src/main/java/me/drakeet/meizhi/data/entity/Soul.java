@@ -33,4 +33,12 @@ public class Soul implements Serializable {
 
     @PrimaryKey(PrimaryKey.AssignType.AUTO_INCREMENT) @Column("_id") public long id;
     @NotNull @Unique @Column("objectId") public String objectId;
+
+    @Override
+    public String toString() {
+        return "Soul{" +
+                "id=" + id +
+                ", objectId='" + objectId + '\'' +
+                '}';
+    }
 }

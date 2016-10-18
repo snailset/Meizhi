@@ -51,10 +51,12 @@ public abstract class ToolbarActivity extends BaseActivity {
             throw new IllegalStateException(
                     "The subclass of ToolbarActivity must contain a toolbar.");
         }
+        // Toolbar 点击事件
         mToolbar.setOnClickListener(v -> onToolbarClick());
+        //-- 将onMenuItemClick监听者设置给toolbar
         setSupportActionBar(mToolbar);
 
-        if (canBack()) {
+        if (canBack()) {  //这里设置Toolbar是否有返回按钮
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -84,6 +86,7 @@ public abstract class ToolbarActivity extends BaseActivity {
     }
 
 
+    // 显示或隐藏toobar (有动画效果)
     protected void hideOrShowToolbar() {
         mAppBar.animate()
                .translationY(mIsHidden ? 0 : -mAppBar.getHeight())

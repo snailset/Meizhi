@@ -25,9 +25,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.umeng.analytics.MobclickAgent;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.umeng.analytics.MobclickAgent;
 import me.drakeet.meizhi.BuildConfig;
 import me.drakeet.meizhi.R;
 import me.drakeet.meizhi.ui.base.BaseActivity;
@@ -51,7 +53,9 @@ public class AboutActivity extends BaseActivity {
         mCollapsingToolbarLayout.setTitle(getString(R.string.app_name));
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //显示bar返回键
+
+        //监听返回键，执行这个在执行android.R.id.home
         mToolbar.setNavigationOnClickListener(v -> AboutActivity.this.onBackPressed());
     }
 

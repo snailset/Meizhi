@@ -28,12 +28,27 @@ import java.util.Date;
  */
 @Table("ganks") public class Gank extends Soul {
 
-    @Column("url") public String url;
-    @Column("type") public String type;
-    @Column("desc") public String desc;
-    @Column("who") public String who;
-    @Column("used") public boolean used;
-    @Column("createdAt") public Date createdAt;
-    @Column("updatedAt") public Date updatedAt;
-    @Column("publishedAt") public Date publishedAt;
+    @Column("url") public String url;                   // http://www.miaopai.com/show/oyhevpuGn7S5XIsgr6xqHQ__.htm
+    @Column("type") public String type;                 // 休息视频
+    @Column("desc") public String desc;                 // “故事的开头总是这样，适逢其会，猝不及防。”这是三对情侣的隔空对话，1分55秒恍然，3分47秒落泪。
+    @Column("who") public String who;                   // lxxself
+    @Column("used") public boolean used;                // true
+    @Column("createdAt") public Date createdAt;         // Fri Sep 23 12:28:08 EDT 2016
+    @Column("updatedAt") public Date updatedAt;         // null
+    @Column("publishedAt") public Date publishedAt;     // Thu Oct 13 11:30:10 EDT 2016
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Gank{" +
+                "url='" + url + '\'' +
+                ", type='" + type + '\'' +
+                ", desc='" + desc + '\'' +
+                ", who='" + who + '\'' +
+                ", used=" + used +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", publishedAt=" + publishedAt +
+                '}';
+    }
 }

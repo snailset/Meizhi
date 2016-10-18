@@ -21,6 +21,7 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 底面画一个圆角较大的矩形 -->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#10000000"/>
@@ -28,6 +29,7 @@
         </shape>
     </item>
 
+    <!-- 上面画一个白色的矩形，使其距离底面2dp, 就有底面2dp出现了，所以形成了阴影的效果 -->
     <item android:bottom="2dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>

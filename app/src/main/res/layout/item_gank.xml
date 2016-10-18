@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="*"/>
-
+        <!-- 空的，还可以这样啊 -->
         <android.support.v4.widget.Space
             android:layout_width="6dp"
             android:layout_height="wrap_content"/>

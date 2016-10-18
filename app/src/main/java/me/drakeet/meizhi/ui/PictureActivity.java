@@ -28,11 +28,14 @@ import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
+
 import java.io.File;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import me.drakeet.meizhi.R;
 import me.drakeet.meizhi.ui.base.ToolbarActivity;
 import me.drakeet.meizhi.util.RxMeizhi;
@@ -82,19 +85,21 @@ public class PictureActivity extends ToolbarActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
         parseIntent();
-        ViewCompat.setTransitionName(mImageView, TRANSIT_PIC);
-        Picasso.with(this).load(mImageUrl).into(mImageView);
-        setAppBarAlpha(0.7f);
-        setTitle(mImageTitle);
+        ViewCompat.setTransitionName(mImageView, TRANSIT_PIC); // 转场共享元素
+        Picasso.with(this).load(mImageUrl).into(mImageView);  //加载图片,由于这个url是在之前下好的，所以直接加载好了
+        setAppBarAlpha(0.7f);   //设置AppBar的透明度
+        setTitle(mImageTitle); // 设置title 这个title太长了会自动变短，好智能
         setupPhotoAttacher();
     }
 
 
     private void setupPhotoAttacher() {
+        // 图片缩放，双击 效果
         mPhotoViewAttacher = new PhotoViewAttacher(mImageView);
+        // 图片单击 开关toolbar
         mPhotoViewAttacher.setOnViewTapListener((view, v, v1) -> hideOrShowToolbar());
         // @formatter:off
-        mPhotoViewAttacher.setOnLongClickListener(v -> {
+        mPhotoViewAttacher.setOnLongClickListener(v -> {   //长按 弹出是否保存到手机的对话框
             new AlertDialog.Builder(PictureActivity.this)
                     .setMessage(getString(R.string.ask_saving_picture))
                     .setNegativeButton(android.R.string.cancel,
@@ -111,6 +116,7 @@ public class PictureActivity extends ToolbarActivity {
     }
 
 
+    //-- 保存图片，并弹出保存成功或者失败的对话框
     private void saveImageToGallery() {
         // @formatter:off
         Subscription s = RxMeizhi.saveImageAndGetPathObservable(this, mImageUrl, mImageTitle)

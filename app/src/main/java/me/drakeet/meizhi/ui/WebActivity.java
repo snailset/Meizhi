@@ -161,7 +161,7 @@ public class WebActivity extends ToolbarActivity {
                 intent.setAction(Intent.ACTION_VIEW);
                 Uri uri = Uri.parse(mUrl);
                 intent.setData(uri);
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                if (intent.resolveActivity(getPackageManager()) != null) { // 判断intent是否能找到组件
                     startActivity(intent);
                 } else {
                     Toasts.showLong(R.string.tip_open_fail);
@@ -197,7 +197,7 @@ public class WebActivity extends ToolbarActivity {
 
         @Override public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            mProgressbar.setProgress(newProgress);
+            mProgressbar.setProgress(newProgress); // 设置进度条的进度
             if (newProgress == 100) {
                 mProgressbar.setVisibility(View.GONE);
             } else {

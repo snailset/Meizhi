@@ -35,6 +35,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override public void onReceive(Context context, Intent intent) {
         PreferencesLoader loader = new PreferencesLoader(context);
         if (loader.getBoolean(R.string.action_notifiable, true)) {
+            //通知栏上显示
             HeadsUps.show(context, MainActivity.class,
                     context.getString(R.string.headsup_title),
                     context.getString(R.string.headsup_content),

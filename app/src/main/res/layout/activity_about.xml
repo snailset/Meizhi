@@ -30,6 +30,16 @@
         android:layout_height="@dimen/about_header_height"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <!-- 实现可以折叠的Toolbar -->
+        <!--contentScrim 表示最小时的背景颜色-->
+        <!--
+        ~ layout_scrollFlags 表示：
+        ~ scroll - 想滚动就必须设置这个。
+        ~ enterAlways - 实现quick return效果, 当向下移动时，立即显示View（比如Toolbar)。
+        ~ exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面。
+        ~ enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。
+        -->
+        <!--app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle" 表示展开状态隐藏Title-->
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
@@ -70,6 +80,7 @@
                     tools:text="Version 1.2.3"/>
             </LinearLayout>
 
+            <!-- layout_collapseMode pin表示最后折叠后保留在屏幕上的 parallax随屏幕滚动变化，最后逐渐消失 -->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -81,6 +92,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--NestedScrollView 在MD中代替ScrollView 可以用作与ToolBar协作-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

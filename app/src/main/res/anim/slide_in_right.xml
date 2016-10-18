@@ -19,14 +19,20 @@
 
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:interpolator/decelerate_quad">
+    <!-- 位移，x方向 从父控件的50% 向 0位移 -->
     <translate
         android:fromXDelta="50%p"
         android:toXDelta="0"
         android:duration="@android:integer/config_mediumAnimTime"/>
+
+    <!-- 透明度 从0(完全透明) 到 1(不透明) -->
+    <!-- 这里的透明度的变化是根据原来的透明度百分比变化的，比如初始透明度为0.5,那么变化范围为 0*0.5 - 1*0.5 -->
     <alpha
         android:fromAlpha="0.0"
         android:toAlpha="1.0"
         android:duration="@android:integer/config_mediumAnimTime"/>
+
+    <!-- 缩放：x方向和y方向 都是 从 0.5 到 1 -->
     <scale
         android:fromXScale="0.5"
         android:toXScale="1.0"

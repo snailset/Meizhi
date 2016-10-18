@@ -28,14 +28,31 @@ import java.util.Date;
  */
 @Table("meizhis") public class Meizhi extends Soul {
 
-    @Column("url") public String url;
-    @Column("type") public String type;
-    @Column("desc") public String desc;
-    @Column("who") public String who;
-    @Column("used") public boolean used;
-    @Column("createdAt") public Date createdAt;
-    @Column("updatedAt") public Date updatedAt;
-    @Column("publishedAt") public Date publishedAt;
-    @Column("imageWidth") public int imageWidth;
-    @Column("imageHeight") public int imageHeight;
+    @Column("url") public String url;                   // http://ww1.sinaimg.cn/large/610dc034jw1f867mvc6qjj20u00u0wh7.jpg
+    @Column("type") public String type;                 // 福利
+    @Column("desc") public String desc;                 // 9-26 冰蛙(Icefrog)的个人历史
+    @Column("who") public String who;                   // daimajia
+    @Column("used") public boolean used;                // true
+    @Column("createdAt") public Date createdAt;         // Sun Sep 25 22:41:04 EDT 2016
+    @Column("updatedAt") public Date updatedAt;         // null
+    @Column("publishedAt") public Date publishedAt;     // Mon Sep 26 11:52:58 EDT 2016
+    @Column("imageWidth") public int imageWidth;        // 0
+    @Column("imageHeight") public int imageHeight;      // 0
+
+    @Override
+    public String toString() {
+        return "Meizhi{" +
+                super.toString() +
+                "url='" + url + '\'' +
+                ", type='" + type + '\'' +
+                ", desc='" + desc + '\'' +
+                ", who='" + who + '\'' +
+                ", used=" + used +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", publishedAt=" + publishedAt +
+                ", imageWidth=" + imageWidth +
+                ", imageHeight=" + imageHeight +
+                '}';
+    }
 }

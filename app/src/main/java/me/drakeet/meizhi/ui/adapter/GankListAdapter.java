@@ -60,9 +60,9 @@ public class GankListAdapter extends AnimRecyclerViewAdapter<GankListAdapter.Vie
     @Override public void onBindViewHolder(ViewHolder holder, int position) {
         Gank gank = mGankList.get(position);
         if (position == 0) {
-            showCategory(holder);
+            showCategory(holder);  //第一个是要显示种类的
         }
-        else {
+        else {                     //当当前种类和上一个种类一致时，不显示该种类，共用上一个就行了
             boolean theCategoryOfLastEqualsToThis = mGankList.get(
                     position - 1).type.equals(mGankList.get(position).type);
             if (!theCategoryOfLastEqualsToThis) {
@@ -73,6 +73,8 @@ public class GankListAdapter extends AnimRecyclerViewAdapter<GankListAdapter.Vie
             }
         }
         holder.category.setText(gank.type);
+
+        //SpannableStringBuilder能存放字符串的样式，而String则不能，具体没看，以后要用再看 - -
         SpannableStringBuilder builder = new SpannableStringBuilder(gank.desc).append(
                 StringStyles.format(holder.gank.getContext(), " (via. " +
                         gank.who +

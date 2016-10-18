@@ -27,7 +27,7 @@ import me.drakeet.meizhi.util.Toasts;
 /**
  * Created by drakeet on 6/21/15.
  */
-public class App extends Application {
+public class App extends Application {  // 在AndroidManifest.xml中设置android:name=".App",在所有组件执行之前执行这个类
 
     private static final String DB_NAME = "gank.db";
     public static Context sContext;

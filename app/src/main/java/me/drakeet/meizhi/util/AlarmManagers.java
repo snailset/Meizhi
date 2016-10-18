@@ -35,6 +35,7 @@ public class AlarmManagers {
         Calendar today = Calendar.getInstance();
         Calendar now = Calendar.getInstance();
 
+        //12:24:38 会
         today.set(Calendar.HOUR_OF_DAY, 12);
         today.set(Calendar.MINUTE, 24);
         today.set(Calendar.SECOND, 38);
@@ -43,11 +44,16 @@ public class AlarmManagers {
             return;
         }
 
+        //action 并不是唯一标识的，准确的要用setClass
         Intent intent = new Intent("me.drakeet.meizhi.alarm");
         intent.setClass(context, AlarmReceiver.class);
+        // PendingIntent就是一个可以在满足一定条件下执行的Intent，它相比于Intent的优势在于自己携带有Context对象，这样他就不必依赖于某个activity才可以存在
+        // 这个返回的对象可以被其他应用执行，即使当前应用结束掉
         PendingIntent broadcast = PendingIntent.getBroadcast(context, 520, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
+        // 闹钟服务
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        //-- 当到了today的时间，会广播，相当于调用 sentBroadcast(intent)
         manager.set(AlarmManager.RTC_WAKEUP, today.getTimeInMillis(), broadcast);
     }
 }

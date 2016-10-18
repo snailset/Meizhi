@@ -37,6 +37,7 @@ public class Once {
     }
 
 
+    // 对于一个tagKey ，callback只调用一次，调用一次后将状态值存在SharedPreferences里，下次再调用先检测这个状态值。
     public void show(String tagKey, OnceCallback callback) {
         boolean isSecondTime = mSharedPreferences.getBoolean(tagKey, false);
         if (!isSecondTime) {

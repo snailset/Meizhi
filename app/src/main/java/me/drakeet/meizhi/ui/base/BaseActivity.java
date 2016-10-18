@@ -39,6 +39,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public static final GankApi sGankIO = DrakeetFactory.getGankIOSingleton();
 
+    // Rxjava: CompositeSubscription持有Subscription,在onDestroy()或者onDestroyView()里取消所有的订阅,防止内存泄漏
     private CompositeSubscription mCompositeSubscription;
 
 
@@ -62,11 +63,11 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.action_about:
+        switch (id) {   //-- 菜单
+            case R.id.action_about: //todo 关于界面
                 startActivity(new Intent(this, AboutActivity.class));
                 return true;
-            case R.id.action_login:
+            case R.id.action_login: //TODO 登录界面
                 loginGitHub();
                 return true;
         }

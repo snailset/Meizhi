@@ -31,7 +31,7 @@ public class DrakeetFactory {
     public static final int gankSize = 5;
 
 
-    public static GankApi getGankIOSingleton() {
+    public static GankApi getGankIOSingleton() {   //-- 获取gankService单例，这里就可以直接从网上获取数据了
         synchronized (monitor) {
             if (sGankIOSingleton == null) {
                 sGankIOSingleton = new DrakeetRetrofit().getGankService();
@@ -41,7 +41,7 @@ public class DrakeetFactory {
     }
 
 
-    public static DrakeetApi getDrakeetSingleton() {
+    public static DrakeetApi getDrakeetSingleton() { // 获取drakeetService单例
         synchronized (monitor) {
             if (sDrakeetSingleton == null) {
                 sDrakeetSingleton = new DrakeetRetrofit().getDrakeetService();

@@ -52,11 +52,14 @@ public class AnimRecyclerViewAdapter<T extends RecyclerView.ViewHolder>
         Context context = view.getContext();
         if (position > mLastPosition) {
             view.setAlpha(0);
+
+            // 等一段时间开始动画，在这之前Text是不可见的，越后面的越晚开始动画
             view.postDelayed(() -> {
                 Animation animation = AnimationUtils.loadAnimation(context,
                         R.anim.slide_in_right);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override public void onAnimationStart(Animation animation) {
+                        // 开始动画的时候设为可见
                         view.setAlpha(1);
                     }
 

@@ -32,24 +32,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.bumptech.glide.Glide;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.otto.Subscribe;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.drakeet.meizhi.DrakeetFactory;
 import me.drakeet.meizhi.LoveBus;
 import me.drakeet.meizhi.R;
 import me.drakeet.meizhi.data.GankData;
-import me.drakeet.meizhi.event.OnKeyBackClickEvent;
 import me.drakeet.meizhi.data.entity.Gank;
+import me.drakeet.meizhi.event.OnKeyBackClickEvent;
 import me.drakeet.meizhi.ui.adapter.GankListAdapter;
 import me.drakeet.meizhi.ui.base.BaseActivity;
 import me.drakeet.meizhi.util.LoveStrings;
@@ -91,6 +94,7 @@ public class GankFragment extends Fragment {
      */
     public static GankFragment newInstance(int year, int month, int day) {
         GankFragment fragment = new GankFragment();
+        // Activity与Fragment通信
         Bundle args = new Bundle();
         args.putInt(ARG_YEAR, year);
         args.putInt(ARG_MONTH, month);
@@ -131,7 +135,7 @@ public class GankFragment extends Fragment {
         return rootView;
     }
 
-
+    // 在onCreateView之后执行
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (mGankList.size() == 0) loadData();
@@ -140,7 +144,7 @@ public class GankFragment extends Fragment {
         }
     }
 
-
+    // 初始化 RecyclerView
     private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -163,7 +167,7 @@ public class GankFragment extends Fragment {
         // @formatter:on
     }
 
-
+    // 显示视频 听说有bug 没看 - -
     private void loadVideoPreview() {
         String where = String.format("{\"tag\":\"%d-%d-%d\"}", mYear, mMonth, mDay);
         DrakeetFactory.getDrakeetSingleton()
@@ -208,6 +212,7 @@ public class GankFragment extends Fragment {
     }
 
 
+    //显示没准备视频的界面
     private void showEmptyView() {mEmptyViewStub.inflate();}
 
 
@@ -313,7 +318,7 @@ public class GankFragment extends Fragment {
         startActivity(intent);
     }
 
-
+    // otto框架
     @Override public void onResume() {
         super.onResume();
         LoveBus.getLovelySeat().register(this);
